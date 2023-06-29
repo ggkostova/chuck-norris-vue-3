@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-import '@/assets/styles/HomePage.css';
 import HeroSection from "@/components/common/HeroSection.vue";
 import DescriptionComponent from "@/components/common/DescriptionComponent.vue";
 import {CHUCK_NORRIS_IMAGE_ALT, SITE_DESCRIPTION} from "@/constants";

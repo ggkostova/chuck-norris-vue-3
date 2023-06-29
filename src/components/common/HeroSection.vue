@@ -1,5 +1,5 @@
 <template>
-  <img :src="props.imgSrc" :alt="props.imgAlt">
+  <img class="img" :src="props.imgSrc" :alt="props.imgAlt">
 </template>
 
 <script setup>
@@ -10,6 +10,3 @@ import { defineProps } from 'vue';
       imgAlt: String
   })
 </script>
-
-<style scoped src="../../assets/styles/HeroSection.css">
-</style>

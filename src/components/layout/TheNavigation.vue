@@ -15,10 +15,8 @@
 </template>
 
 <script setup>
-import { routes } from '@/router';
+import { routes } from '@/router/router';
 
 const routerLinks = routes;
 
 </script>
-
-<style scoped src="../../assets/styles/TheNavigation.css"></style>

@@ -12,12 +12,9 @@
 <script setup>
 import { defineProps } from 'vue';
 
-  const props = defineProps({
-    headerText: String,
-    descriptionText: String,
-    descriptionButton: String
-  })
+const props = defineProps({
+  headerText: String,
+  descriptionText: String,
+  descriptionButton: String
+})
 </script>
-
-<style scoped src="../../assets/styles/DescriptionComponent.css">
-</style>

@@ -1,20 +1,30 @@
+import { ref, onMounted } from "vue";
 import {defineStore} from "pinia";
-import {CATEGORIES} from "@/constants";
 
-export const store = defineStore("store", {
-    state: () => ({
-        favourites: JSON.parse(localStorage.getItem('Favourites')) || [],
-        categories: CATEGORIES,
-    }),
-    actions: {
-        removeFromFavourites(joke) {
-            this.favourites = this.favourites.filter(item => item.id !== joke.id);
-            localStorage.setItem('Favourites', JSON.stringify(this.favourites));
-        },
-        addToFavourites(joke){
-            this.favourites.push(joke);
-            localStorage.setItem('Favourites', JSON.stringify(this.favourites));
-        },
+export const useFavouritesStore = defineStore('store', () => {
+    const favourites = ref([]);
+    const categories = ref([]);
 
+    function removeFromFavourites(joke) {
+        favourites.value = favourites.value.filter(item => item.id !== joke.id);
+        localStorage.setItem('Favourites', JSON.stringify(favourites.value));
     }
+    function addToFavourites(joke) {
+        favourites.value.push(joke);
+        localStorage.setItem('Favourites', JSON.stringify(favourites.value));
+    }
+
+    onMounted(() => {
+        const storedFavourites = JSON.parse(localStorage.getItem('Favourites'));
+        if (Array.isArray(storedFavourites)) {
+            favourites.value = storedFavourites;
+        }
+    });
+
+    return {
+        favourites,
+        categories,
+        removeFromFavourites,
+        addToFavourites
+    };
 })

@@ -1,0 +1,23 @@
+.info-side {
+    width: 30%;
+    position: relative;
+    top: 10rem;
+    left: 12%;
+    border-radius: 10px;
+    text-align: center;
+    color: #efefef;
+    & > h2{
+        font-weight: bold;
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    & > h4{
+        margin-bottom: 30px;
+        font-size: 30px;
+    }
+}
+.btn{
+    position: relative;
+    right: 15px;
+}
+

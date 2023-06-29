@@ -7,6 +7,8 @@
 
 <script setup>
 import TheNavigation from "@/components/layout/TheNavigation.vue";
-import 'bootstrap/dist/css/bootstrap.css';
 </script>
 
+<style lang="scss">
+@import "./assets/styles/styles";
+</style>

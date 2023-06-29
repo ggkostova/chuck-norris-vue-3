@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-import '../../assets/styles/ButtonComponent.css';
 import { defineEmits } from 'vue';
 import { defineProps } from 'vue';
 

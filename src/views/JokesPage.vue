@@ -29,22 +29,24 @@
 </template>
 
 <script setup>
-import '../assets/styles/JokesPage.css'
+import {ref, reactive, onMounted} from "vue";
+import {storeToRefs} from "pinia";
+import {useFavouritesStore} from "../stores/store";
 import ButtonComponent from "../components/common/ButtonComponent.vue";
 import fetchFunction from "@/utilities";
-import {CATEGORIES, CHUCK_API_URL} from "@/constants";
-import {ref, reactive, onMounted} from "vue";
-import { store } from "../stores/store";
+import {CHUCK_API_URL} from "@/constants";
 
 const joke = reactive({
   id: '',
   jokeText: '',
   isAddedToFav: false
 });
-const categories = CATEGORIES;
+const store = useFavouritesStore();
+const {categories} = storeToRefs(store);
 const selectedCategory = ref('');
-const taskStore = store();
+
 onMounted(fetchRandomJoke);
+
 async function fetchRandomJoke() {
   joke.isAddedToFav = false;
   if(selectedCategory.value){
@@ -58,15 +60,15 @@ async function fetchRandomJoke() {
   }
 }
 function isAddedToFavourites(jokeId){
-    return taskStore.favourites.some((item) => item.id === jokeId);
+    return store.favourites.some((item) => item.id === jokeId);
 }
 function toggleFavourite() {
   const jokeIsAdded = isAddedToFavourites(joke.id);
   if (jokeIsAdded) {
-    taskStore.removeFromFavourites(joke);
+    store.removeFromFavourites(joke);
   } else {
     const tempJoke = {...joke, isAddedToFav: true};
-    taskStore.addToFavourites(tempJoke);
+    store.addToFavourites(tempJoke);
   }
 }
 </script>
