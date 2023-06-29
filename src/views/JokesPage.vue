@@ -5,7 +5,7 @@
         <option value="" selected>Choose category</option>
         <option v-for="category in categories" :value="category" :key="category">{{ category }}</option>
       </select>
-      <button-component class="another-joke-btn" :button-text="'Get another one'" @click="fetchRandomJoke"></button-component>
+      <button-component class="another-joke-btn" :button-text="'Get another joke'" @click="fetchRandomJoke"></button-component>
     </div>
     <div class="joke-container">
       <div v-if="joke.jokeText">
