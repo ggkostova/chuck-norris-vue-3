@@ -28,60 +28,45 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import '../assets/styles/JokesPage.css'
 import ButtonComponent from "../components/common/ButtonComponent.vue";
 import fetchFunction from "@/utilities";
 import {CATEGORIES, CHUCK_API_URL} from "@/constants";
 import {ref, reactive, onMounted} from "vue";
 import { store } from "../stores/store";
-export default {
-  components: {
-    ButtonComponent,
-  },
-  setup(){
-    const joke = reactive({
-      id: '',
-      jokeText: '',
-      isAddedToFav: false
-    });
-    const categories = CATEGORIES;
-    const selectedCategory = ref('');
-    const taskStore = store();
-    onMounted(fetchRandomJoke);
-    async function fetchRandomJoke() {
-      joke.isAddedToFav = false;
-      if(selectedCategory.value){
-        const tempJoke = await fetchFunction(`${CHUCK_API_URL}/random?category=${selectedCategory.value}`);
-        joke.id = tempJoke.id;
-        joke.jokeText = tempJoke.value;
-      }else{
-        const tempJoke = await fetchFunction(`${CHUCK_API_URL}/random`);
-        joke.id = tempJoke.id;
-        joke.jokeText = tempJoke.value;
-      }
-    }
-    function isAddedToFavourites(jokeId){
-        return taskStore.favourites.some((item) => item.id === jokeId);
-    }
-    function toggleFavourite() {
-      const jokeIsAdded = this.isAddedToFavourites(joke.id);
-      if (jokeIsAdded) {
-        taskStore.removeFromFavourites(joke);
-      } else {
-        const tempJoke = {...joke, isAddedToFav: true};
-        taskStore.addToFavourites(tempJoke);
-      }
-    }
-    return {
-      joke,
-      categories,
-      selectedCategory,
-      fetchRandomJoke,
-      taskStore,
-      toggleFavourite,
-      isAddedToFavourites
-    }
-  },
+
+const joke = reactive({
+  id: '',
+  jokeText: '',
+  isAddedToFav: false
+});
+const categories = CATEGORIES;
+const selectedCategory = ref('');
+const taskStore = store();
+onMounted(fetchRandomJoke);
+async function fetchRandomJoke() {
+  joke.isAddedToFav = false;
+  if(selectedCategory.value){
+    const tempJoke = await fetchFunction(`${CHUCK_API_URL}/random?category=${selectedCategory.value}`);
+    joke.id = tempJoke.id;
+    joke.jokeText = tempJoke.value;
+  }else{
+    const tempJoke = await fetchFunction(`${CHUCK_API_URL}/random`);
+    joke.id = tempJoke.id;
+    joke.jokeText = tempJoke.value;
+  }
+}
+function isAddedToFavourites(jokeId){
+    return taskStore.favourites.some((item) => item.id === jokeId);
+}
+function toggleFavourite() {
+  const jokeIsAdded = isAddedToFavourites(joke.id);
+  if (jokeIsAdded) {
+    taskStore.removeFromFavourites(joke);
+  } else {
+    const tempJoke = {...joke, isAddedToFav: true};
+    taskStore.addToFavourites(tempJoke);
+  }
 }
 </script>

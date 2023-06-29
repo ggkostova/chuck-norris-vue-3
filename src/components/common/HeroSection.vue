@@ -1,14 +1,14 @@
 <template>
-  <img :src="imgSrc" :alt="imgAlt">
+  <img :src="props.imgSrc" :alt="props.imgAlt">
 </template>
 
-<script>
-export default {
-  props: {
-    imgSrc: String,
-    imgAlt: String
-  },
-}
+<script setup>
+import { defineProps } from 'vue';
+
+  const props = defineProps({
+      imgSrc: String,
+      imgAlt: String
+  })
 </script>
 
 <style scoped src="../../assets/styles/HeroSection.css">

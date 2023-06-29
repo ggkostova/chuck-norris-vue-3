@@ -14,18 +14,11 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import { routes } from '@/router';
 
-export default {
-  setup() {
-    const routerLinks = routes;
+const routerLinks = routes;
 
-    return {
-      routerLinks,
-    };
-  },
-};
 </script>
 
 <style scoped src="../../assets/styles/TheNavigation.css"></style>

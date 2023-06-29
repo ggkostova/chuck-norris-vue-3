@@ -5,15 +5,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import TheNavigation from "@/components/layout/TheNavigation.vue";
 import 'bootstrap/dist/css/bootstrap.css';
-
-export default {
-  name: 'App',
-  components: {
-    TheNavigation,
-  }
-}
 </script>
 

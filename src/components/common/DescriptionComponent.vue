@@ -1,22 +1,22 @@
 <template>
   <div class="info-side">
-    <h2>{{ headerText }}</h2>
-    <h4> {{ descriptionText }} </h4>
+    <h2>{{ props.headerText }}</h2>
+    <h4> {{ props.descriptionText }} </h4>
     <router-link
         id="button"
         :to='"/jokes"'
-    >{{ descriptionButton }}</router-link>
+    >{{ props.descriptionButton }}</router-link>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
+<script setup>
+import { defineProps } from 'vue';
+
+  const props = defineProps({
     headerText: String,
     descriptionText: String,
     descriptionButton: String
-  },
-};
+  })
 </script>
 
 <style scoped src="../../assets/styles/DescriptionComponent.css">

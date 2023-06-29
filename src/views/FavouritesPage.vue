@@ -19,24 +19,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import '../assets/styles/FavouritesPage.css';
 import {computed} from "vue";
 import {store} from "@/stores/store";
 
-export default {
-  setup(){
-    const taskStore = store();
-
-    const headerText = computed(() => {
-      return taskStore.favourites.length ? 'Favourites list:' : 'The favourites list is empty.';
-    });
-
-    return {
-      headerText,
-      taskStore
-    }
-  },
-};
+const taskStore = store();
+const headerText = computed(() => {
+  return taskStore.favourites.length ? 'Favourites list:' : 'The favourites list is empty.';
+});
 </script>
 

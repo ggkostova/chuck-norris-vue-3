@@ -1,21 +1,19 @@
 <template>
-  <button id="button" @click="navigateTo">{{ buttonText }}</button>
+  <button id="button" @click="navigateTo">{{ props.buttonText }}</button>
 </template>
 
-<script>
+<script setup>
 import '../../assets/styles/ButtonComponent.css';
-export default {
-  props: {
-    buttonText: String,
-  },
-  setup(props, context) {
-    const navigateTo = () => {
-      context.emit('navigate-to');
-    };
+import { defineEmits } from 'vue';
+import { defineProps } from 'vue';
 
-    return {
-      navigateTo,
-    };
-  },
+const props = defineProps({
+  buttonText: String,
+});
+
+const emit = defineEmits(['navigate-to']);
+
+const navigateTo = () => {
+  emit('navigate-to');
 };
 </script>
