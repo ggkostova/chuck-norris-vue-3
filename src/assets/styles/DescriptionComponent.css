@@ -1,0 +1,28 @@
+div {
+    width: 30%;
+    position: relative;
+    top: 10rem;
+    left: 12%;
+    border-radius: 10px;
+    text-align: center;
+    color: #efefef;
+}
+
+div h2, div h4{
+    margin-bottom: 30px;
+}
+
+div h2{
+    font-weight: bold;
+    font-size: 40px;
+}
+
+div h4 {
+    font-size: 30px;
+}
+
+.btn{
+    position: relative;
+    right: 15px;
+}
+
